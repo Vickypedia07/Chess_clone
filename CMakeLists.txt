@@ -8,7 +8,7 @@ endif()
 add_compile_options(-Wall -Wextra)
 
 # Rules and game logic: no SFML in here
-add_library(chesslib src/board.cpp)
+add_library(chesslib src/board.cpp )
 target_include_directories(chesslib PUBLIC src)
 
 find_package(SFML 3 COMPONENTS Graphics REQUIRED)

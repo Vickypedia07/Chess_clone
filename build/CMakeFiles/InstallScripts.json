@@ -1,0 +1,9 @@
+{
+	"InstallScripts" : 
+	[
+		"E:/Chess_clone/build/cmake_install.cmake",
+		"E:/Chess_clone/build/_deps/catch2-build/cmake_install.cmake",
+		"E:/Chess_clone/build/_deps/catch2-build/src/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

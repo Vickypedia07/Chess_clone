@@ -13,7 +13,7 @@ struct Board {
         return squares[row*8+col];
     }
 
-    void set{int row, int col, Piece p}{
+    void set(int row, int col, Piece p){
         squares[row*8+col] = p;
     }
 

@@ -1,0 +1,14 @@
+E:/Chess_clone/build/CMakeFiles/chesslib.dir
+E:/Chess_clone/build/CMakeFiles/chess.dir
+E:/Chess_clone/build/CMakeFiles/tests.dir
+E:/Chess_clone/build/CMakeFiles/test.dir
+E:/Chess_clone/build/CMakeFiles/edit_cache.dir
+E:/Chess_clone/build/CMakeFiles/rebuild_cache.dir
+E:/Chess_clone/build/_deps/catch2-build/CMakeFiles/test.dir
+E:/Chess_clone/build/_deps/catch2-build/CMakeFiles/edit_cache.dir
+E:/Chess_clone/build/_deps/catch2-build/CMakeFiles/rebuild_cache.dir
+E:/Chess_clone/build/_deps/catch2-build/src/CMakeFiles/Catch2.dir
+E:/Chess_clone/build/_deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir
+E:/Chess_clone/build/_deps/catch2-build/src/CMakeFiles/test.dir
+E:/Chess_clone/build/_deps/catch2-build/src/CMakeFiles/edit_cache.dir
+E:/Chess_clone/build/_deps/catch2-build/src/CMakeFiles/rebuild_cache.dir
