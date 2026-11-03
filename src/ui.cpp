@@ -48,6 +48,13 @@ void drawBoard(sf::RenderWindow& window, const Board& board, const sf::Font& fon
     }
 }
 
+void highlight(sf::RenderWindow& window, int idx, sf::Color color){
+    sf::RectangleShape r(sf::Vector2f(SQUARE, SQUARE));
+    r.setPosition({static_cast<float>((idx%8)*SQUARE), static_cast<float>((idx/8)*SQUARE)});
+    r.setFillColor(color);
+    window.draw(r);
+}
+
 
 }
 
@@ -61,13 +68,41 @@ void runChess(Board board){
         return;
     }
 
+    std::optional<int> selected;
+    std::cerr << "runChess started\n";
+
     while(window.isOpen()){
         while(const std::optional event = window.pollEvent()){
-            if(event->is<sf::Event::Closed>()) window.close();
+            std::cerr << "event\n";
+            if(event->is<sf::Event::Closed>()) {window.close();}
+            else if(const auto* click = event->getIf<sf::Event::MouseButtonPressed>()){
+                if(click->button != sf::Mouse::Button::Left) continue;
+                const int col = click->position.x/SQUARE;
+                const int row = click->position.y/SQUARE;
+                if(row<0 || row>7 || col<0 || col>7) continue;
+                const int idx = row*8+col;
+                const Piece clicked = board.squares[idx];
+                std::cout << "row " << row << " col " << col
+          << " empty " << clicked.empty()
+          << " white-to-move " << (board.sideToMove == Color::White)
+          << " selected " << selected.has_value() << "\n";
+
+                if(!clicked.empty() && clicked.color == board.sideToMove){
+                    selected = idx;
+                }else if(selected){
+                    board.squares[idx] = board.squares[*selected];
+                    board.squares[*selected] = Piece{};
+                    board.sideToMove = opposite(board.sideToMove);
+                    selected.reset();
+                }
+            }
         }
 
         window.clear();
         drawBoard(window, board, font);
+        if(selected){
+            highlight(window, *selected, sf::Color(255,255,0,120));
+        }
         window.display();
     }
 }

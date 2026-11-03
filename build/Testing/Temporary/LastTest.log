@@ -1,22 +1,22 @@
-Start testing: Nov 02 16:51 India Standard Time
+Start testing: Nov 03 10:49 India Standard Time
 ----------------------------------------------------------
 1/1 Testing: tests
 1/1 Test: tests
 Command: "E:/Chess_clone/build/tests.exe"
 Directory: E:/Chess_clone/build
-"tests" start time: Nov 02 16:51 India Standard Time
+"tests" start time: Nov 03 10:49 India Standard Time
 Output:
 ----------------------------------------------------------
-Randomness seeded to: 3636004801
+Randomness seeded to: 989889941
 ===============================================================================
 All tests passed (5 assertions in 1 test case)
 
 <end of output>
-Test time =   0.26 sec
+Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"tests" end time: Nov 02 16:51 India Standard Time
+"tests" end time: Nov 03 10:49 India Standard Time
 "tests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Nov 02 16:51 India Standard Time
+End testing: Nov 03 10:49 India Standard Time

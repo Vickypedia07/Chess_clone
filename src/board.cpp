@@ -4,7 +4,7 @@
 Board Board::startingPosition(){
     Board b;
 
-    const PieceType back[8] = {PieceType::Rook,PieceType::Bishop,PieceType::Knight,PieceType::Queen,
+    const PieceType back[8] = {PieceType::Rook,PieceType::Knight,PieceType::Bishop,PieceType::Queen,
     PieceType::King,PieceType::Bishop,PieceType::Knight,PieceType::Rook};
 
 

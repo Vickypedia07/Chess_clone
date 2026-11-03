@@ -101,7 +101,7 @@
 38581	40600	8153210260579886	_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_exception.cpp.obj	324ed2ecf749e512
 39697	41217	8153210271807304	_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_quantifiers.cpp.obj	ba4c9dd2309fa4d
 39489	41257	8153210269804366	_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_predicate.cpp.obj	fcd2bb8d771d81b9
-67	1424	8153214325318933	CMakeFiles/chesslib.dir/src/board.cpp.obj	7ff2b9a0e67cc1e1
+205	3195	8153833523609429	CMakeFiles/chesslib.dir/src/board.cpp.obj	7ff2b9a0e67cc1e1
 39356	41990	8153210268537905	_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_floating_point.cpp.obj	4b0bd95e0e90e8e6
 40358	42150	8153210278846631	_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_templated.cpp.obj	13204a70c01b379a
 40616	42247	8153210280863021	_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/matchers/internal/catch_matchers_impl.cpp.obj	dc3b15131d10a131
@@ -109,13 +109,13 @@
 169	1809	8153214326447804	CMakeFiles/tests.dir/tests/test_board.cpp.obj	34b77dedd09c278a
 125	2512	8153214326232271	CMakeFiles/chess.dir/src/ui.cpp.obj	5e98b8ed8ab2cbde
 41269	43179	8153210287355777	_deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/catch2/internal/catch_main.cpp.obj	3528a2ff1359b25a
-2458	2707	8153214349219063	libchesslib.a	4df60a9023fdf6ed
+3196	3500	8153833553523611	libchesslib.a	323b3384c529da59
 40192	48835	8153210276759332	_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_string.cpp.obj	9f030cb0bf08fd60
 272	1758	8153212709767784	_deps/catch2-build/src/libCatch2.a	bb6a4246b59c2e55
 92	1407	8153214325583639	CMakeFiles/chesslib.dir/src/main.cpp.obj	80a741da3a17c39a
 1290	1743	8153214338336025	_deps/catch2-build/src/libCatch2Main.a	1a73525305f3f064
 79	2456	8153214325434530	CMakeFiles/chesslib.dir/src/ui.cpp.obj	2acb51bdc0d07297
-2707	3030	8153214351717572	chess.exe	b849e412efedb462
-95	373	8153216596048409	libchesslib.a	323b3384c529da59
-374	951	8153216598887467	chess.exe	b849e412efedb462
-394	1042	8153216599118989	tests.exe	fb875883d136ccd4
+3500	3948	8153833556561237	chess.exe	b849e412efedb462
+3509	4021	8153833556668452	tests.exe	fb875883d136ccd4
+11	1509	8153866453509129	CMakeFiles/chess.dir/src/ui.cpp.obj	5e98b8ed8ab2cbde
+1510	1999	8153866468562372	chess.exe	b849e412efedb462
