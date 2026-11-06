@@ -58,6 +58,15 @@ build CMakeFiles/chesslib.dir/src/board.cpp.obj: CXX_COMPILER__chesslib_unscanne
   OBJECT_FILE_DIR = CMakeFiles\chesslib.dir\src
   TARGET_SUPPORT_DIR = CMakeFiles\chesslib.dir
 
+build CMakeFiles/chesslib.dir/src/movegen.cpp.obj: CXX_COMPILER__chesslib_unscanned_Release E$:/Chess_clone/src/movegen.cpp || cmake_object_order_depends_target_chesslib
+  CONFIG = Release
+  DEP_FILE = CMakeFiles\chesslib.dir\src\movegen.cpp.obj.d
+  FLAGS = -O3 -DNDEBUG -std=gnu++17 -Wall -Wextra
+  INCLUDES = -IE:/Chess_clone/src
+  OBJECT_DIR = CMakeFiles\chesslib.dir
+  OBJECT_FILE_DIR = CMakeFiles\chesslib.dir\src
+  TARGET_SUPPORT_DIR = CMakeFiles\chesslib.dir
+
 
 # =============================================================================
 # Link build statements for STATIC_LIBRARY target chesslib
@@ -66,7 +75,7 @@ build CMakeFiles/chesslib.dir/src/board.cpp.obj: CXX_COMPILER__chesslib_unscanne
 #############################################
 # Link the static library libchesslib.a
 
-build libchesslib.a: CXX_STATIC_LIBRARY_LINKER__chesslib_Release CMakeFiles/chesslib.dir/src/board.cpp.obj
+build libchesslib.a: CXX_STATIC_LIBRARY_LINKER__chesslib_Release CMakeFiles/chesslib.dir/src/board.cpp.obj CMakeFiles/chesslib.dir/src/movegen.cpp.obj
   CONFIG = Release
   LANGUAGE_COMPILE_FLAGS = -O3 -DNDEBUG
   OBJECT_DIR = CMakeFiles\chesslib.dir
@@ -141,6 +150,15 @@ build CMakeFiles/tests.dir/tests/test_board.cpp.obj: CXX_COMPILER__tests_unscann
   OBJECT_FILE_DIR = CMakeFiles\tests.dir\tests
   TARGET_SUPPORT_DIR = CMakeFiles\tests.dir
 
+build CMakeFiles/tests.dir/tests/test_moves.cpp.obj: CXX_COMPILER__tests_unscanned_Release E$:/Chess_clone/tests/test_moves.cpp || cmake_object_order_depends_target_tests
+  CONFIG = Release
+  DEP_FILE = CMakeFiles\tests.dir\tests\test_moves.cpp.obj.d
+  FLAGS = -O3 -DNDEBUG -std=gnu++17 -Wall -Wextra
+  INCLUDES = -IE:/Chess_clone/src -IE:/Chess_clone/build/_deps/catch2-src/src/catch2/.. -IE:/Chess_clone/build/_deps/catch2-build/generated-includes
+  OBJECT_DIR = CMakeFiles\tests.dir
+  OBJECT_FILE_DIR = CMakeFiles\tests.dir\tests
+  TARGET_SUPPORT_DIR = CMakeFiles\tests.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target tests
@@ -149,7 +167,7 @@ build CMakeFiles/tests.dir/tests/test_board.cpp.obj: CXX_COMPILER__tests_unscann
 #############################################
 # Link the executable tests.exe
 
-build tests.exe: CXX_EXECUTABLE_LINKER__tests_Release CMakeFiles/tests.dir/tests/test_board.cpp.obj | libchesslib.a _deps/catch2-build/src/libCatch2Main.a _deps/catch2-build/src/libCatch2.a || _deps/catch2-build/src/libCatch2.a _deps/catch2-build/src/libCatch2Main.a libchesslib.a
+build tests.exe: CXX_EXECUTABLE_LINKER__tests_Release CMakeFiles/tests.dir/tests/test_board.cpp.obj CMakeFiles/tests.dir/tests/test_moves.cpp.obj | libchesslib.a _deps/catch2-build/src/libCatch2Main.a _deps/catch2-build/src/libCatch2.a || _deps/catch2-build/src/libCatch2.a _deps/catch2-build/src/libCatch2Main.a libchesslib.a
   CONFIG = Release
   FLAGS = -O3 -DNDEBUG
   LINK_LIBRARIES = libchesslib.a  _deps/catch2-build/src/libCatch2Main.a  _deps/catch2-build/src/libCatch2.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
