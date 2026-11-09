@@ -62,7 +62,7 @@ void addPawn(const Board& b, std::vector<Move>& moves, int r, int c){
 
 }
 
-std::vector<Move> generatePsuedoLegal(const Board& b){
+std::vector<Move> generatePseudoLegal(const Board& b){
     std::vector<Move> moves;
     for(int r = 0 ; r < 8 ; ++r){
         for(int c = 0 ; c < 8 ; ++c){
@@ -74,7 +74,8 @@ std::vector<Move> generatePsuedoLegal(const Board& b){
                 case PieceType::Rook : for(const auto& d : ROOK_DIRS) addSlide(b,moves,r,c,d[0],d[1]); break;
                 case PieceType::Bishop : for(const auto& d : BISHOP_DIRS) addSlide(b,moves,r,c,d[0],d[1]); break;
                 case PieceType::Queen : for(const auto& d : ROOK_DIRS) addSlide(b,moves,r,c,d[0],d[1]);
-                                        for(const auto& d : BISHOP_DIRS) addSlide(b,moves,r,c,d[0],d[1]); break;
+                                        for(const auto& d : BISHOP_DIRS) addSlide(b,moves,r,c,d[0],d[1]); 
+                                        break;
                 case PieceType::Pawn : addPawn(b,moves,r,c); break;
                 default : break;
 
@@ -82,4 +83,43 @@ std::vector<Move> generatePsuedoLegal(const Board& b){
         }
     }
     return moves;
+}
+
+Board applyMove(const Board& b, Move m){
+    Board next = b;
+    next.squares[m.to] = next.squares[m.from];
+    next.squares[m.from] = Piece{};
+    next.sideToMove = opposite(b.sideToMove);
+    return next;
+}
+
+bool inCheck(const Board& b , Color c){
+    int kingSquare = -1;
+    for(int i=0 ; i<64 ; ++i){
+        if(b.squares[i].type == PieceType::King && b.squares[i].color == c) kingSquare = i;
+
+    }if(kingSquare < 0) return false;
+
+    Board opp = b;
+    opp.sideToMove = opposite(c);
+    for(const Move& m : generatePseudoLegal(opp))
+        if(m.to == kingSquare) return true;
+    
+    return false;
+}
+
+std::vector<Move> generateLegal(const Board& b){
+    std::vector<Move> legal;
+    for(const Move& m : generatePseudoLegal(b))
+        if(!inCheck(applyMove(b,m),b.sideToMove)) legal.push_back(m);
+    
+    return legal;
+}
+
+long long perft(const Board& b, int depth){
+    if(depth == 0) return 1;
+    long long total = 0;
+    for(const Move& m : generateLegal(b)) total += perft(applyMove(b,m),depth-1);
+    
+    return total;
 }

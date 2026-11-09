@@ -1,4 +1,5 @@
 #include "ui.h"
+#include "movegen.h"
 
 #include <SFML/Graphics.hpp>
 
@@ -55,6 +56,14 @@ void highlight(sf::RenderWindow& window, int idx, sf::Color color){
     window.draw(r);
 }
 
+void dot(sf::RenderWindow& window, int idx){
+    sf::CircleShape c(SQUARE/6.f);
+    c.setFillColor(sf::Color(0,0,0,90));
+    c.setOrigin({SQUARE/6.f,SQUARE/6.f});
+    c.setPosition({(idx%8)*SQUARE + SQUARE/2.f,(idx/8)*SQUARE + SQUARE/2.f});
+    window.draw(c);
+}
+
 
 }
 
@@ -90,9 +99,15 @@ void runChess(Board board){
                 if(!clicked.empty() && clicked.color == board.sideToMove){
                     selected = idx;
                 }else if(selected){
-                    board.squares[idx] = board.squares[*selected];
-                    board.squares[*selected] = Piece{};
-                    board.sideToMove = opposite(board.sideToMove);
+                    bool allowed = false;
+                    for(const Move& m : generateLegal(board)){
+                        if(m.from == *selected && m.to == idx){
+                            board = applyMove(board , m);
+                            break;
+                        }
+                    }
+                    
+                    
                     selected.reset();
                 }
             }
@@ -102,6 +117,8 @@ void runChess(Board board){
         drawBoard(window, board, font);
         if(selected){
             highlight(window, *selected, sf::Color(255,255,0,120));
+            for(const Move& m : generateLegal(board))
+                if(m.from == *selected) dot(window,m.to);
         }
         window.display();
     }
