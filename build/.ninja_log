@@ -116,8 +116,10 @@
 1290	1743	8153214338336025	_deps/catch2-build/src/libCatch2Main.a	1a73525305f3f064
 79	2456	8153214325434530	CMakeFiles/chesslib.dir/src/ui.cpp.obj	2acb51bdc0d07297
 1834	2166	8159260141537007	chess.exe	b849e412efedb462
-1757	2253	8159260140779588	tests.exe	a4ece97b2a69a85b
+1246	1632	8159262585101271	tests.exe	b9237c2c1c2d58db
 49	1067	8159260123696161	CMakeFiles/chesslib.dir/src/movegen.cpp.obj	f5a53572b0d29b0
 63	1363	8159260123882888	CMakeFiles/tests.dir/tests/test_moves.cpp.obj	1c0db9a6b6ffa070
 69	1245	8159262573367146	CMakeFiles/tests.dir/tests/test_legal.cpp.obj	5bc98434c5253984
-1246	1632	8159262585101271	tests.exe	b9237c2c1c2d58db
+94	2968	8161941628539429	CMakeFiles/chess.dir/src/main.cpp.obj	91815a1296286188
+111	3696	8161941628698570	CMakeFiles/tests.dir/tests/test_board.cpp.obj	34b77dedd09c278a
+102	4477	8161941628617643	CMakeFiles/chess.dir/src/ui.cpp.obj	5e98b8ed8ab2cbde

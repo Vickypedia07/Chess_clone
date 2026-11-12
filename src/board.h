@@ -8,6 +8,8 @@
 struct Board {
     std::array<Piece,64> squares{};
     Color sideToMove = Color::White;
+    bool castleWK=true,castleWQ=true,castleBK=true,castleBQ=true;
+    int enPassant = -1;
 
     Piece at(int row, int col) const {
         return squares[row*8+col];
@@ -20,4 +22,6 @@ struct Board {
     static Board startingPosition();
 
     static Board fromRows(const std::vector<std::string>& rows, Color side);
+
+    static Board fromFen(const std::string& fen);
 };
