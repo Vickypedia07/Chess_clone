@@ -5,7 +5,6 @@
 #include "board.h"
 #include "move.h"
 
-std::vector<Move> generatePseudoLegal(const Board& board);
 std::vector<Move> generatePseudoLegal(const Board& board, bool withCastling = true);
 
 Board applyMove(const Board& b, Move m);

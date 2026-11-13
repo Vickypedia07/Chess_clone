@@ -168,6 +168,15 @@ build CMakeFiles/tests.dir/tests/test_legal.cpp.obj: CXX_COMPILER__tests_unscann
   OBJECT_FILE_DIR = CMakeFiles\tests.dir\tests
   TARGET_SUPPORT_DIR = CMakeFiles\tests.dir
 
+build CMakeFiles/tests.dir/tests/test_special.cpp.obj: CXX_COMPILER__tests_unscanned_Release E$:/Chess_clone/tests/test_special.cpp || cmake_object_order_depends_target_tests
+  CONFIG = Release
+  DEP_FILE = CMakeFiles\tests.dir\tests\test_special.cpp.obj.d
+  FLAGS = -O3 -DNDEBUG -std=gnu++17 -Wall -Wextra
+  INCLUDES = -IE:/Chess_clone/src -IE:/Chess_clone/build/_deps/catch2-src/src/catch2/.. -IE:/Chess_clone/build/_deps/catch2-build/generated-includes
+  OBJECT_DIR = CMakeFiles\tests.dir
+  OBJECT_FILE_DIR = CMakeFiles\tests.dir\tests
+  TARGET_SUPPORT_DIR = CMakeFiles\tests.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target tests
@@ -176,7 +185,7 @@ build CMakeFiles/tests.dir/tests/test_legal.cpp.obj: CXX_COMPILER__tests_unscann
 #############################################
 # Link the executable tests.exe
 
-build tests.exe: CXX_EXECUTABLE_LINKER__tests_Release CMakeFiles/tests.dir/tests/test_board.cpp.obj CMakeFiles/tests.dir/tests/test_moves.cpp.obj CMakeFiles/tests.dir/tests/test_legal.cpp.obj | libchesslib.a _deps/catch2-build/src/libCatch2Main.a _deps/catch2-build/src/libCatch2.a || _deps/catch2-build/src/libCatch2.a _deps/catch2-build/src/libCatch2Main.a libchesslib.a
+build tests.exe: CXX_EXECUTABLE_LINKER__tests_Release CMakeFiles/tests.dir/tests/test_board.cpp.obj CMakeFiles/tests.dir/tests/test_moves.cpp.obj CMakeFiles/tests.dir/tests/test_legal.cpp.obj CMakeFiles/tests.dir/tests/test_special.cpp.obj | libchesslib.a _deps/catch2-build/src/libCatch2Main.a _deps/catch2-build/src/libCatch2.a || _deps/catch2-build/src/libCatch2.a _deps/catch2-build/src/libCatch2Main.a libchesslib.a
   CONFIG = Release
   FLAGS = -O3 -DNDEBUG
   LINK_LIBRARIES = libchesslib.a  _deps/catch2-build/src/libCatch2Main.a  _deps/catch2-build/src/libCatch2.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32

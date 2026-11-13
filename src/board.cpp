@@ -58,7 +58,7 @@ Board Board::fromFen(const std::string& fen){
 
     int r=0, c=0;
     for(char ch : placement){
-        if(ch == '/'){ ++r; c=0 }
+        if(ch == '/'){ ++r; c=0 ;}
         else if(std::isdigit(static_cast<unsigned char>(ch))) c+=ch-'0';
         else{
             const Color color = std::isupper(static_cast<unsigned char>(ch)) ? Color::White : Color::Black;
@@ -85,7 +85,7 @@ Board Board::fromFen(const std::string& fen){
         if(ch == 'q') b.castleBQ = true;
     }
 
-    if(ep.size() == 2 && ep != "-") b.enPassant = (8-(e[1]-'0')) * 8 + (ep[0]-'a');
+    if(ep.size() == 2 && ep != "-") b.enPassant = (8-(ep[1]-'0')) * 8 + (ep[0]-'a');
     return b;
 
 }

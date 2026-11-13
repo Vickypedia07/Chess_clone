@@ -55,7 +55,7 @@ void addPawn(const Board& b, std::vector<Move>& moves, int r, int c){
     const int startRow = (me == Color::White) ? 6 : 1; // starting row for pawns
 
     if(onBoard(r+dir,c) && b.at(r+dir,c).empty()){
-        addMove(moves, r , c , r+dir , c);
+        addPawnMove(moves, r , c , r+dir , c);
         if(r == startRow && b.at(r+2*dir,c).empty()){
             addMove(moves , r , c , r+2*dir , c); // double move from starting position
         }
