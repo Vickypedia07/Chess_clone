@@ -55,6 +55,9 @@ Board Board::fromFen(const std::string& fen){
     std::istringstream in(fen);
     std::string placement, side, castling, ep;
     in >> placement >> side >> castling >> ep;
+    int halfmove = 0;
+    in>>halfmove;
+    b.halfmoveClock = halfmove;
 
     int r=0, c=0;
     for(char ch : placement){

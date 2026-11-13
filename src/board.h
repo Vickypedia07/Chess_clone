@@ -10,6 +10,7 @@ struct Board {
     Color sideToMove = Color::White;
     bool castleWK=true,castleWQ=true,castleBK=true,castleBQ=true;
     int enPassant = -1;
+    int halfmoveClock = 0;
 
     Piece at(int row, int col) const {
         return squares[row*8+col];

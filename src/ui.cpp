@@ -1,8 +1,10 @@
 #include "ui.h"
 #include "movegen.h"
+#include "game.h"
 
 #include <SFML/Graphics.hpp>
 
+#include <string>
 #include <optional>
 #include <iostream>
 
@@ -10,6 +12,7 @@ namespace{
 
 const int SQUARE = 80;
 const unsigned BOARD_PX = 8*SQUARE;
+const unsigned STATUS_H = 40;
 
 const sf::Color LIGHT_SQ(240, 217, 181);
 const sf::Color DARK_SQ(181, 136, 99);
@@ -64,62 +67,81 @@ void dot(sf::RenderWindow& window, int idx){
     window.draw(c);
 }
 
+void drawStatus(sf::RenderWindow& window, const sf::Font& font, const std::string& message) {
+    sf::RectangleShape bar(sf::Vector2f(BOARD_PX, STATUS_H));
+    bar.setPosition({0.f, static_cast<float>(BOARD_PX)});
+    bar.setFillColor(sf::Color(40, 40, 40));
+    window.draw(bar);
+
+    sf::Text text(font, message, 22);
+    text.setFillColor(sf::Color::White);
+    text.setPosition({10.f, static_cast<float>(BOARD_PX) + 8.f});
+    window.draw(text);
+}
 
 }
 
-void runChess(Board board){
-    sf::RenderWindow window(sf::VideoMode({BOARD_PX,BOARD_PX}), "CHESS");
+void runChess(Board board) {
+    const Board start = board;
+    Game game(start);
+
+    sf::RenderWindow window(sf::VideoMode({BOARD_PX, BOARD_PX + STATUS_H}), "CHESS");
     window.setFramerateLimit(60);
 
     sf::Font font;
-    if(!font.openFromFile("C:/Windows/Fonts/seguisym.ttf")){
-        std::cerr<<"Could not load font\n";
+    if (!font.openFromFile("C:/Windows/Fonts/seguisym.ttf")) {
+        std::cerr << "Could not load font\n";
         return;
     }
 
     std::optional<int> selected;
-    std::cerr << "runChess started\n";
 
-    while(window.isOpen()){
-        while(const std::optional event = window.pollEvent()){
-            std::cerr << "event\n";
-            if(event->is<sf::Event::Closed>()) {window.close();}
-            else if(const auto* click = event->getIf<sf::Event::MouseButtonPressed>()){
-                if(click->button != sf::Mouse::Button::Left) continue;
-                const int col = click->position.x/SQUARE;
-                const int row = click->position.y/SQUARE;
-                if(row<0 || row>7 || col<0 || col>7) continue;
-                const int idx = row*8+col;
-                const Piece clicked = board.squares[idx];
-                std::cout << "row " << row << " col " << col
-          << " empty " << clicked.empty()
-          << " white-to-move " << (board.sideToMove == Color::White)
-          << " selected " << selected.has_value() << "\n";
+    while (window.isOpen()) {
+        while (const std::optional event = window.pollEvent()) {
+            if (event->is<sf::Event::Closed>()) {
+                window.close();
+            } else if (const auto* key = event->getIf<sf::Event::KeyPressed>()) {
+                if (key->code == sf::Keyboard::Key::R) {
+                    game = Game(start);  // restart
+                    selected.reset();
+                }
+            } else if (const auto* click = event->getIf<sf::Event::MouseButtonPressed>()) {
+                if (click->button != sf::Mouse::Button::Left) continue;
+                if (game.status() != GameStatus::InProgress) continue;
+                const int col = click->position.x / SQUARE;
+                const int row = click->position.y / SQUARE;
+                if (row < 0 || row > 7 || col < 0 || col > 7) continue;
+                const int idx = row * 8 + col;
+                const Piece clicked = game.board().squares[idx];
 
-                if(!clicked.empty() && clicked.color == board.sideToMove){
+                if (!clicked.empty() && clicked.color == game.turn()) {
                     selected = idx;
-                }else if(selected){
-                    bool allowed = false;
-                    for(const Move& m : generateLegal(board)){
-                        if(m.from == *selected && m.to == idx){
-                            board = applyMove(board , m);
-                            break;
-                        }
-                    }
-                    
-                    
+                } else if (selected) {
+                    game.tryMove(*selected, idx);
                     selected.reset();
                 }
             }
         }
 
         window.clear();
-        drawBoard(window, board, font);
-        if(selected){
-            highlight(window, *selected, sf::Color(255,255,0,120));
-            for(const Move& m : generateLegal(board))
-                if(m.from == *selected) dot(window,m.to);
+        drawBoard(window, game.board(), font);
+        if (!game.history().empty()) {   // show the last move
+            highlight(window, game.history().back().from, sf::Color(120, 200, 120, 110));
+            highlight(window, game.history().back().to, sf::Color(120, 200, 120, 110));
         }
+        if (game.inCheck()) {   // red square under the king in check
+            for (int i = 0; i < 64; ++i) {
+                const Piece p = game.board().squares[i];
+                if (p.type == PieceType::King && p.color == game.turn())
+                    highlight(window, i, sf::Color(220, 50, 50, 150));
+            }
+        }
+        if (selected) {
+            highlight(window, *selected, sf::Color(255, 255, 0, 120));
+            for (const Move& m : game.legalMoves())
+                if (m.from == *selected) dot(window, m.to);
+        }
+        drawStatus(window, font, game.statusMessage());
         window.display();
     }
 }

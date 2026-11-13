@@ -8,7 +8,7 @@ endif()
 add_compile_options(-Wall -Wextra)
 
 # Rules and game logic: no SFML in here
-add_library(chesslib src/board.cpp src/movegen.cpp )
+add_library(chesslib src/board.cpp src/movegen.cpp src/rules.cpp src/game.cpp )
 target_include_directories(chesslib PUBLIC src)
 
 find_package(SFML 3 COMPONENTS Graphics REQUIRED)
@@ -19,6 +19,6 @@ include(FetchContent)
 FetchContent_Declare(Catch2 GIT_REPOSITORY https://github.com/catchorg/Catch2.git GIT_TAG v3.5.2)
 FetchContent_MakeAvailable(Catch2)
 enable_testing()
-add_executable(tests tests/test_board.cpp tests/test_moves.cpp tests/test_legal.cpp tests/test_special.cpp)
+add_executable(tests tests/test_board.cpp tests/test_moves.cpp tests/test_legal.cpp tests/test_special.cpp tests/test_game.cpp)
 target_link_libraries(tests PRIVATE chesslib Catch2::Catch2WithMain)
 add_test(NAME tests COMMAND tests)

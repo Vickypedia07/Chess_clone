@@ -132,6 +132,7 @@ Board applyMove(const Board& b, Move m) {
     Board next = b;
     const Piece moving = b.squares[m.from];
     const int fr = m.from / 8, fc = m.from % 8, tr = m.to / 8, tc = m.to % 8;
+    const bool capture = !b.squares[m.to].empty() || (moving.type == PieceType::Pawn && m.to == b.enPassant && fc != tc);
 
     // en passant
     if (moving.type == PieceType::Pawn && m.to == b.enPassant && fc != tc)
@@ -165,6 +166,8 @@ Board applyMove(const Board& b, Move m) {
     };
     touch(m.from);
     touch(m.to);
+
+    next.halfmoveClock = (moving.type == PieceType::Pawn || capture) ? 0 : b.halfmoveClock + 1;
 
     next.sideToMove = opposite(b.sideToMove);
     return next;
